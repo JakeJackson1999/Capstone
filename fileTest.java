@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 
 public class fileTest {
 
+	public boolean utfCheck(String line) {
+		
+	}
+	
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
