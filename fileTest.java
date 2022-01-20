@@ -15,7 +15,7 @@ public class fileTest {
 		
 		File infile = new File(filename);
 		
-		if infile.isFile() {	
+		if (infile.isFile()) {	
 			System.out.println("File found");
 			System.out.println("Your file is: " + filename);
 		}
