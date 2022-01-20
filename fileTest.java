@@ -13,6 +13,14 @@ public class fileTest {
 		
 		String filename = scanner.nextLine();
 		
-		System.out.println("Your file is: " + filename);
+		File infile = new File(filename);
+		
+		if infile.isFile() {	
+			System.out.println("File found");
+			System.out.println("Your file is: " + filename);
+		}
+		else {
+			System.out.println("File not found");	
+		}
 	}
 }
