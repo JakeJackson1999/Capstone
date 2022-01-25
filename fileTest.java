@@ -1,10 +1,38 @@
+package fileTest;
 import java.io.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class fileTest {
 	
+	private static ArrayList<Character> en = new ArrayList<Character>();
+	private static ArrayList<Character> enC = new ArrayList<Character>();
+	
+	public static void fillEn() {
+		for (int i = 97; i < 123; i++) {
+			en.add((char) i);
+		}
+	}
+	
+	public static void fillEnC() {
+		for (int i = 65; i < 91; i++) {
+			enC.add((char) i);
+		}
+	}
+	
 	// Check the characters for UTF-8 (we unit test this specifically)
 	public static boolean utfCheck(String line) {
+		
+		for (int i = 0; i < line.length(); i++) {
+			
+			if (line.charAt(i) == ',') {
+				continue;
+			}
+			else if (en.contains(line.charAt(i)) == true) {
+				continue;
+			}
+			else { return false; }
+		}
 		
 		return true;
 	}
@@ -36,6 +64,10 @@ public class fileTest {
 	
 	// Main, calls the stuff
 	public static void main(String[] args) throws IOException {
+		
+		fillEn();
+		fillEnC();
+		
 		boolean check;
 		
 		Scanner scanner = new Scanner(System.in);
