@@ -4,17 +4,17 @@ name: CSV Check
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
-on: push
-  workflow_dispatch:
+on: [push]
+  # workflow_dispatch:
     # Inputs the workflow accepts.
-    inputs:
-      name:
+    # inputs:
+      # name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Checking CSV File'
+        # description: 'Checking CSV File'
         # Default value if no value is explicitly provided
-        default: 'File Check'
+        # default: 'File Check'
         # Input has to be provided for the workflow to run
-        required: true
+        # required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,5 +27,6 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Check file
+    - run: echo "Checking input file if it is CSV UTF-8"
     - uses: actions/checkout@v2
-      run: java fileTest
+    - run: java fileTest
