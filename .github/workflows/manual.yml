@@ -16,7 +16,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: Check file
     - run: echo "Checking input file if it is CSV UTF-8"
     - uses: actions/checkout@v2
     - run: java fileTest
