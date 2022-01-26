@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class fileTest {
+class fileTest {
 	
 	private static ArrayList<Character> en = new ArrayList<Character>();
 	private static ArrayList<Character> enC = new ArrayList<Character>();
