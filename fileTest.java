@@ -7,6 +7,8 @@ public class fileTest {
 	
 	private static ArrayList<Character> en = new ArrayList<Character>();
 	private static ArrayList<Character> enC = new ArrayList<Character>();
+	private static ArrayList<String> es = new ArrayList<String>();
+	private static ArrayList<String> esC = new ArrayList<String>();
 	
 	public static void fillEn() {
 		for (int i = 97; i < 123; i++) {
@@ -20,6 +22,18 @@ public class fileTest {
 		}
 	}
 	
+	public static void fillEs() {
+		es.add("ñ");
+		es.add("ll");
+		es.add("ch");
+	}
+	
+	public static void fillEsC() {
+		es.add("Ñ");
+		es.add("Ll");
+		es.add("Ch");
+	}
+	
 	// Check the characters for UTF-8 (we unit test this specifically)
 	public static boolean utfCheck(String line) {
 		
@@ -31,11 +45,22 @@ public class fileTest {
 			else if (en.contains(line.charAt(i)) == true) {
 				continue;
 			}
+			else if (enC.contains(line.charAt(i)) == true) {
+				continue;
+			}
+			else if (es.contains(line.charAt(i)) == true) {
+				continue;
+			}
+			else if (esC.contains(line.charAt(i)) == true) {
+				continue;
+			}
 			else { return false; }
 		}
 		
 		return true;
 	}
+	
+	
 	
 	// File reader, returns true if file is UTF-8
 	public static boolean readFile(File infile) throws IOException {
@@ -45,13 +70,13 @@ public class fileTest {
 		
 		while ((line = reader.readLine()) != null) {
 			
-			/*
-				Run utfcheck here
+			
+				charCheck = utfCheck(line);
 				
 				if (!charCheck) {
 					break;
 				}
-			*/
+			
 		
 			// Placeholder code for now
 			
@@ -67,20 +92,22 @@ public class fileTest {
 		
 		fillEn();
 		fillEnC();
+		fillEs();
+		fillEsC();
 		
 		boolean check;
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("Please provide input file");
+		//System.out.println("Please provide input file");
 		
-		String filename = scanner.nextLine();
+		//String filename = scanner.nextLine();
 		
-		File infile = new File(filename);
+		File infile = new File("input.csv");
 		
-		if (infile.isFile() && filename.contains(".csv")) {	
-			System.out.println("File found and is a .csv");
-			System.out.println("Your file is: " + filename);
+		if (infile.isFile()) {	
+			//System.out.println("File found and is a .csv");
+			//System.out.println("Your file is: " + filename);
 			
 			check = readFile(infile);
 			
