@@ -18,4 +18,6 @@ jobs:
     # Runs a single command using the runners shell
     - run: echo "Checking input file if it is CSV UTF-8"
     - uses: actions/checkout@v2
+    - run: java fileTest.java
     - run: java fileTest
+    - run: rm fileTest
