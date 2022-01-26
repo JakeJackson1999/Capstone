@@ -1,9 +1,9 @@
-//package fileTest;
+package fileTest;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-//public class fileTest {
+public class fileTest {
 	
 	private static ArrayList<Character> en = new ArrayList<Character>();
 	private static ArrayList<Character> enC = new ArrayList<Character>();
@@ -120,4 +120,4 @@ import java.util.ArrayList;
 			System.out.println("File not found or is not a .csv file");	
 		}
 	}
-//}
+}
