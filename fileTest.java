@@ -60,8 +60,6 @@ public class fileTest {
 		return true;
 	}
 	
-	
-	
 	// File reader, returns true if file is UTF-8
 	public static boolean readFile(File infile) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(infile));
@@ -69,16 +67,11 @@ public class fileTest {
 		boolean charCheck = true;
 		
 		while ((line = reader.readLine()) != null) {
-			
-			
 				charCheck = utfCheck(line);
 				
 				if (!charCheck) {
 					break;
 				}
-			
-		
-			// Placeholder code for now
 			
 			System.out.println(line);
 		}
@@ -97,23 +90,14 @@ public class fileTest {
 		
 		boolean check;
 		
-		Scanner scanner = new Scanner(System.in);
-		
-		//System.out.println("Please provide input file");
-		
-		//String filename = scanner.nextLine();
-		
 		File infile = new File("input.csv");
 		
 		if (infile.isFile()) {	
-			//System.out.println("File found and is a .csv");
-			//System.out.println("Your file is: " + filename);
 			
 			check = readFile(infile);
 			
 			if (!check) {
 				System.out.println("File is not fully UTF-8");
-				// Other stuff I guess
 			}
 		}
 		else {
