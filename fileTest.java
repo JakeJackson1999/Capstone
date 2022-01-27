@@ -1,57 +1,28 @@
 package fileTest;
 import java.io.*;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
+import java.nio.*;
 
 public class fileTest {
-	
-	private static ArrayList<Character> en = new ArrayList<Character>();
-	private static ArrayList<Character> enC = new ArrayList<Character>();
-	private static ArrayList<String> es = new ArrayList<String>();
-	private static ArrayList<String> esC = new ArrayList<String>();
-	
-	public static void fillEn() {
-		for (int i = 97; i < 123; i++) {
-			en.add((char) i);
-		}
-	}
-	
-	public static void fillEnC() {
-		for (int i = 65; i < 91; i++) {
-			enC.add((char) i);
-		}
-	}
-	
-	public static void fillEs() {
-		es.add("ñ");
-		es.add("ll");
-		es.add("ch");
-	}
-	
-	public static void fillEsC() {
-		es.add("Ñ");
-		es.add("Ll");
-		es.add("Ch");
-	}
-	
 	// Check the characters for UTF-8 (we unit test this specifically)
 	public static boolean utfCheck(String line) {
 		
+		ByteBuffer buffer = StandardCharsets.UTF_8.encode(line);
+		
+		//String encoded = StandardCharsets.UTF_8.decode(buffer).toString();
+		
 		for (int i = 0; i < line.length(); i++) {
 			
-			if (line.charAt(i) == ',') {
+			if (buffer.get(i) == ',' || buffer.get(i) == ' ') {
 				continue;
 			}
-			else if (en.contains(line.charAt(i)) == true) {
+			else if (buffer.get(i) >= 97 && buffer.get(i) <= 122) { // Lower case EN
 				continue;
 			}
-			else if (enC.contains(line.charAt(i)) == true) {
+			else if (buffer.get(i) >= 65 && buffer.get(i) <= 90) { // Upper case EN
 				continue;
 			}
-			else if (es.contains(line.charAt(i)) == true) {
-				continue;
-			}
-			else if (esC.contains(line.charAt(i)) == true) {
+			else if (buffer.get(i) == 'ñ' || buffer.get(i) == 'Ñ') { // Special ES
 				continue;
 			}
 			else { return false; }
@@ -66,14 +37,13 @@ public class fileTest {
 		String line;
 		boolean charCheck = true;
 		
-		while ((line = reader.readLine()) != null) {
+		while ((line = reader.readLine()) != null) {			
 				charCheck = utfCheck(line);
 				
 				if (!charCheck) {
 					break;
 				}
-			
-			System.out.println(line);
+
 		}
 		
 		reader.close();
@@ -81,21 +51,13 @@ public class fileTest {
 	}
 	
 	// Main, calls the stuff
-	public static void main(String[] args) throws IOException {
-		
-		fillEn();
-		fillEnC();
-		fillEs();
-		fillEsC();
-		
+	public static void main(String[] args) throws IOException {		
 		boolean check;
 		
 		File infile = new File("input.csv");
 		
 		if (infile.isFile()) {	
-			
 			check = readFile(infile);
-			
 			if (!check) {
 				System.out.println("File is not fully UTF-8");
 			}
