@@ -16,10 +16,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      - name: Apply JDK 11
-        uses: actions/setup-java@v11
+      - uses: actions/setup-java@v11
         with: 
           java-version: 11
-      - name: utfUnitTest
       - run: ./gradlew utfUnitTest
     
