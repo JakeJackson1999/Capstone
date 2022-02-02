@@ -59,16 +59,12 @@ public class fileRun
 		
 		boolean check;
 		
-		File infile = new File(System.getProperty("user.dir") + "/src/test.csv");
+		File infile = new File("input.csv");
 		
 		if (infile.isFile()) {	
 			check = readFile(infile);
-			
 			if (!check) {
 				System.out.println("File is not fully UTF-8");
-			}
-			else {
-				System.out.println("File is CSV UTF-8");
 			}
 		}
 		else {
